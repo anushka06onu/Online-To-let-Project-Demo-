@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Home Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <style>
+    img {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+    .container{
+           display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+    }
+
+    .product-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px;
+        text-align: left;
+    }
+
+    .product-card h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .product-card ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .product-card ul li {
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .product-card ul li strong {
+        color: #333;
+    }
+
+    .product-card ul li span {
+        color: #007BFF;
+    }
+
+    .product-card ul li:last-child {
+        margin-bottom: 0;
+    }
+    /* Header Area*/
+    .navbar-brand{
+        color: #C6C8CD;
+    }
+    .header--area,
+    .header--area .dropdown-menu{
+        background: #0f172a;
+    }
+
+    .header--area .navbar-nav{
+        gap: 16px;
+    }
+
+    .header--area .nav-item a{
+        color: #C6C8CD;
+        transition: all 0.2s ease-in-out;
+    }
+    .header--area .nav-item a:hover{
+        color: #ffffff;
+    }
+    .header--area .nav-item .nav-link.btn{
+        background:#9333ea;
+        padding: 5px 20px;
+        border-radius: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<section class="header--area">
+  <div class="container-lg">
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="/">StaySquare</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Find
+            </a>
+            <ul class="dropdown-menu">
+              <li></li><a class="nav-link" href="flatlist">Flat List</a></li>
+          <li><a class="nav-link" href="short">Short Time Flat</a></li>
+          <li></li><a class="nav-link" href="female">Female Flats</a></li>
+        </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="houseowner">House Owner</a></li>
+        <li class="nav-item"><a class="nav-link" href="tenant">Tenant</a></li>
+        <li class="nav-item"><a class="nav-link btn" href="/houseowner/registration">Registration</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<h1 style="text-align: center;">Available Flats/Rooms</h1>
+
+<!--<div class="mb-3">-->
+<!--  <label for="tenantGender">Gender</label>-->
+<!--  <select id="tenantGender" name="tenantGender">-->
+<!--    <option value="All">All</option>-->
+<!--    <option value="Male">Male</option>-->
+<!--    <option value="Female">Female</option>-->
+<!--  </select>-->
+
+<!--&lt;!&ndash;  <label for="rentType">Rent Type</label>&ndash;&gt;-->
+<!--&lt;!&ndash;  <select id="rentType" name="rentType">&ndash;&gt;-->
+<!--&lt;!&ndash;    <option value="All">All</option>&ndash;&gt;-->
+<!--&lt;!&ndash;    <option value="Short">Short</option>&ndash;&gt;-->
+<!--&lt;!&ndash;    <option value="Long">Long</option>&ndash;&gt;-->
+<!--&lt;!&ndash;  </select>&ndash;&gt;-->
+
+<!--  <a class="btn btn-outline-primary btn-sm" id="filterButton" href="#">Filter</a>-->
+<!--</div>-->
+
+<div class="body">
+  <div class="container">
+    <th:block th:each="flat: ${flats}">
+      <div class="product-card">
+        <h2><strong><span th:text="${flat.tenantGender}"></span> Room Available</strong></h2>
+        <ul>
+          <li><strong>No of Rooms:</strong> <span th:text="${flat.noOfRoom}"></span></li>
+          <li><strong>Available Date:</strong> <span th:text="${flat.availableDate}"></span></li>
+          <li><strong>Monthly Rent:</strong> <span th:text="${flat.rent}"></span></li>
+          <li><a class="btn btn-outline-primary btn-sm" th:href="@{|/${flat.id}/detail|}">Details</a></span></li>
+        </ul>
+      </div>
+    </th:block>
+  </div>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tenant Profile</title>
+  <style>
+    section {
+      background-color: black;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .product-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px;
+        text-align: left;
+    }
+
+    .product-card h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .product-card ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .product-card ul li {
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .product-card ul li strong {
+        color: #333;
+    }
+
+    .product-card ul li span {
+        color: #007BFF;
+    }
+
+    .product-card ul li:last-child {
+        margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="product-card">
+  <h2>Flat Details</h2>
+  <ul>
+    <li><strong>Flat No:</strong> <span th:text="${flat.flatNo}"></span></li>
+    <li><strong>No of Rooms:</strong> <span th:text="${flat.noOfRoom}"></span></li>
+    <li><strong>Available Date:</strong> <span th:text="${flat.availableDate}"></span></li>
+    <li><strong>Available:</strong> <span th:text="${flat.available ? 'Yes' : 'No'}"></span></li>
+    <li><strong>Owner Name:</strong> <span th:text="${flat.ownerName}"></span></li>
+    <li><strong>Contact Number:</strong> <span th:text="${flat.contactNumber}"></span></li>
+    <li><strong>Description:</strong> <span th:text="${flat.description}"></span></li>
+    <li><strong>Tenant Gender:</strong> <span th:text="${flat.tenantGender}"></span></li>
+    <li><strong>Address:</strong> <span th:text="${flat.address}"></span></li>
+    <li><strong>No of Tenants:</strong> <span th:text="${flat.noOfTenant}"></span></li>
+  </ul>
+</div>
+</body>
+</html>
