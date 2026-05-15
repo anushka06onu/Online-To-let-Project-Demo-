@@ -1,0 +1,77 @@
+<div th:fragment="header" xmlns:th="http://www.thymeleaf.org">
+<section class="header--area">
+  <div class="container-lg">
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="/">StaySquare</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Find
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="flatlist">Flat List</a></li>
+              <li><a class="dropdown-item" href="short">Short Time Flat</a></li>
+              <li><a class="dropdown-item" href="female">Female Flats</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Login
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="houseowner">As House Owner</a></li>
+              <li><a class="dropdown-item" href="tenant">As Tenant</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Register
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/houseowner/registration">As House Owner</a></li>
+              <li><a class="dropdown-item" href="/tenant/registration">As Tenant</a></li>
+            </ul>
+          </li>
+          <li class="nav-item ms-2">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<script>
+  const toggleBtn = document.getElementById('theme-toggle');
+  if (toggleBtn) {
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    if (currentTheme === 'dark') {
+      toggleBtn.textContent = '☀️';
+    } else {
+      toggleBtn.textContent = '🌙';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      let theme = document.documentElement.getAttribute('data-theme');
+      if (theme === 'dark') {
+        theme = 'light';
+        toggleBtn.textContent = '🌙';
+      } else {
+        theme = 'dark';
+        toggleBtn.textContent = '☀️';
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    });
+  }
+</script>
+</div>

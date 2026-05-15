@@ -1,80 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flat Details</title>
-  <style>
-    section {
-      background-color: black;
-    }
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f9f9f9;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-
-    .product-card {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        width: 300px;
-        text-align: left;
-    }
-
-    .product-card h2 {
-        text-align: center;
-        color: #333;
-        margin-bottom: 20px;
-    }
-
-    .product-card ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .product-card ul li {
-        margin-bottom: 10px;
-        font-size: 14px;
-        color: #555;
-    }
-
-    .product-card ul li strong {
-        color: #333;
-    }
-
-    .product-card ul li span {
-        color: #007BFF;
-    }
-
-    .product-card ul li:last-child {
-        margin-bottom: 0;
-    }
-  </style>
+<head th:replace="~{fragments/head :: head}">
+  <title>Flat Details - StaySquare</title>
 </head>
 <body>
-<div class="product-card">
-  <h2>Flat Details</h2>
-  <ul>
-    <li><strong>Flat No:</strong> <span th:text="${flat.flatNo}"></span></li>
-    <li><strong>Flat Type:</strong> <span th:text="${flat.rentType}"></span></li>
-    <li><strong>No of Rooms:</strong> <span th:text="${flat.noOfRoom}"></span></li>
-    <li><strong>Available Date:</strong> <span th:text="${flat.availableDate}"></span></li>
-    <li><strong>Available:</strong> <span th:text="${flat.available ? 'Yes' : 'No'}"></span></li>
-    <li><strong>Owner Name:</strong> <span th:text="${flat.ownername}"></span></li>
-    <li><strong>Contact Number:</strong> <span th:text="${flat.contactNumber}"></span></li>
-    <li><strong>Description:</strong> <span th:text="${flat.description}"></span></li>
-    <li><strong>Tenant Gender:</strong> <span th:text="${flat.tenantGender}"></span></li>
-    <li><strong>Address:</strong> <span th:text="${flat.address}"></span></li>
-    <li><strong>Rent:</strong> <span th:text="${flat.rent}"></span></li>
-  </ul>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<div class="container section">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card glass">
+                <h2 class="text-center mb-4 section-title">Flat Details</h2>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><strong>Flat No:</strong> <span th:text="${flat.flatNo}"></span></li>
+                    <li class="mb-2"><strong>Flat Type:</strong> <span th:text="${flat.rentType}"></span></li>
+                    <li class="mb-2"><strong>No of Rooms:</strong> <span th:text="${flat.noOfRoom}"></span></li>
+                    <li class="mb-2"><strong>Available Date:</strong> <span th:text="${flat.availableDate}"></span></li>
+                    <li class="mb-2"><strong>Available:</strong> <span th:text="${flat.available ? 'Yes' : 'No'}"></span></li>
+                    <li class="mb-2"><strong>Owner Name:</strong> <span th:text="${flat.ownername}"></span></li>
+                    <li class="mb-2"><strong>Contact Number:</strong> <span th:text="${flat.contactNumber}"></span></li>
+                    <li class="mb-2"><strong>Description:</strong> <span th:text="${flat.description}"></span></li>
+                    <li class="mb-2"><strong>Tenant Gender:</strong> <span th:text="${flat.tenantGender}"></span></li>
+                    <li class="mb-2"><strong>Address:</strong> <span th:text="${flat.address}"></span></li>
+                    <li class="mb-2"><strong>Rent:</strong> <span th:text="${flat.rent}"></span></li>
+                </ul>
+                <div class="text-center mt-4">
+                    <a class="nav-link btn-primary d-inline-block text-center" style="width: auto;" href="/flatlist">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

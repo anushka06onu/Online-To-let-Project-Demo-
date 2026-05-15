@@ -1,276 +1,157 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>Home Page</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-  <style>
-    * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-        }
-
-        .banner {
-            background: url('https://via.placeholder.com/1920x500') no-repeat center center/cover;
-            color: white;
-            height: 500px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .banner h1 {
-            font-size: 3rem;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-        }
-
-        .services {
-            padding: 50px 20px;
-            background-color: #f9f9f9;
-            text-align: center;
-        }
-
-        .services h2 {
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
-
-        .service-boxes {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .service-box {
-            flex: 1;
-            min-width: 300px;
-            background: white;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-box h3 {
-            margin-bottom: 10px;
-            font-size: 1.5rem;
-            color: #333;
-        }
-
-        .service-box p {
-            color: #555;
-        }
-
-        .contact {
-            padding: 50px 20px;
-            background-color: #333;
-            color: white;
-            text-align: center;
-        }
-
-        .contact h2 {
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
-
-        .contact p {
-            margin-bottom: 20px;
-        }
-
-        .contact form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .contact form input,
-        .contact form textarea {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            outline: none;
-        }
-
-        .contact form button {
-            padding: 10px;
-            background: #ff5a5f;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .contact form button:hover {
-            background: #e0484d;
-        }
-    /*prev*/
-    img {
-      display: block;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-    }
-    .container{
-           display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-    }
-
-    .product-card {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        width: 300px;
-        text-align: left;
-    }
-
-    .product-card h2 {
-        text-align: center;
-        color: #333;
-        margin-bottom: 20px;
-    }
-
-    .product-card ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .product-card ul li {
-        margin-bottom: 10px;
-        font-size: 14px;
-        color: #555;
-    }
-
-    .product-card ul li strong {
-        color: #333;
-    }
-
-    .product-card ul li span {
-        color: #007BFF;
-    }
-
-    .product-card ul li:last-child {
-        margin-bottom: 0;
-    }
-    /* Header Area*/
-    .navbar-brand{
-        color: #C6C8CD;
-    }
-    .header--area,
-    .header--area .dropdown-menu{
-        background: #0f172a;
-    }
-
-    .header--area .navbar-nav{
-        gap: 16px;
-    }
-
-    .header--area .nav-item a{
-        color: #C6C8CD;
-        transition: all 0.2s ease-in-out;
-    }
-    .header--area .nav-item a:hover{
-        color: #ffffff;
-    }
-    .header--area .nav-item .nav-link.btn{
-        background:#9333ea;
-        padding: 5px 20px;
-        border-radius: 30px;
-    }
-  </style>
-</head>
+<head th:replace="~{fragments/head :: head}"></head>
 <body>
 
-<section class="header--area">
-  <div class="container-lg">
-    <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="/">StaySquare</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Find
-            </a>
-            <ul class="dropdown-menu">
-              <li></li><a class="nav-link" href="flatlist">Flat List</a></li>
-          <li><a class="nav-link" href="short">Short Time Flat</a></li>
-          <li></li><a class="nav-link" href="female">Female Flats</a></li>
-        </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="houseowner">House Owner</a></li>
-        <li class="nav-item"><a class="nav-link" href="tenant">Tenant</a></li>
-        <li class="nav-item"><a class="nav-link btn" href="/tenant/registration">Registration</a></li>
-        </ul>
+<div th:replace="~{fragments/header :: header}"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Find Your Perfect Student Home</h1>
+      <p>StaySquare helps students find safe, affordable, and comfortable flats near campus. Explore our listings and book your stay today!</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="/flatlist" class="nav-link btn-primary d-inline-block" style="width: auto;">Explore Flats</a>
+        <a href="/tenant/registration" class="nav-link btn btn-outline-light d-inline-block" style="width: auto; border-radius: 2rem; padding: 0.6rem 1.5rem; border: 2px solid white; color: white !important;">Register Now</a>
       </div>
-    </nav>
-  </div>
-</section>
-
-<!--<h1 style="text-align: center;" class="mt-2">Home Page</h1>-->
-<div >
-  <img src="StaySquare.png" alt="Description of the image" width="500">
-</div>
-
-<!-- Services Section -->
-<section class="services">
-  <h2>About Our Services</h2>
-  <div class="service-boxes">
-    <div class="service-box">
-      <h3>Service 1</h3>
-      <p>Details about service 1. We provide excellent service to meet your needs.</p>
     </div>
-    <div class="service-box">
-      <h3>Service 2</h3>
-      <p>Details about service 2. We prioritize quality and customer satisfaction.</p>
-    </div>
-    <div class="service-box">
-      <h3>Service 3</h3>
-      <p>Details about service 3. Dedicated to delivering the best results.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- Contact Us Section -->
-<section class="contact">
-  <h2>Contact Us</h2>
-  <p>If you have any questions or inquiries, feel free to contact us below.</p>
-  <form action="#" method="post">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-</section>
+  <!-- Services Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Why Choose StaySquare?</h2>
+      <div class="grid-cards">
+        <div class="card glass">
+          <div class="text-center mb-3">
+            <i class="fas fa-home fa-3x" style="color: var(--primary-color);"></i>
+          </div>
+          <h3 class="text-center mb-2">Verified Listings</h3>
+          <p class="text-center text-muted">All flats are verified by our team to ensure safety and quality for students.</p>
+        </div>
+        <div class="card glass">
+          <div class="text-center mb-3">
+            <i class="fas fa-dollar-sign fa-3x" style="color: var(--secondary-color);"></i>
+          </div>
+          <h3 class="text-center mb-2">Affordable Rent</h3>
+          <p class="text-center text-muted">Budget-friendly options tailored specifically for students.</p>
+        </div>
+        <div class="card glass">
+          <div class="text-center mb-3">
+            <i class="fas fa-bolt fa-3x" style="color: var(--accent-color);"></i>
+          </div>
+          <h3 class="text-center mb-2">Quick Booking</h3>
+          <p class="text-center text-muted">Easy and fast process to secure your flat without hassle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- FAQ Section -->
+  <section class="section" style="background: rgba(16, 185, 129, 0.03);">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item glass mb-3" style="border-radius: 0.75rem; overflow: hidden;">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="background: transparent; color: var(--text-color); font-weight: 600;">
+                  How do I book a flat?
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                <div class="accordion-body" style="color: var(--nav-text);">
+                  You can browse the available flats in the "Flat List" section. Once you find a flat you like, click on "Details" and contact the house owner directly using the provided contact number.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item glass mb-3" style="border-radius: 0.75rem; overflow: hidden;">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="background: transparent; color: var(--text-color); font-weight: 600;">
+                  Is it safe for female students?
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                <div class="accordion-body" style="color: var(--nav-text);">
+                  Yes, we have a dedicated "Female Flats" section where you can find accommodations exclusively for female students, often in secure buildings or with female-only flatmates.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item glass mb-3" style="border-radius: 0.75rem; overflow: hidden;">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="background: transparent; color: var(--text-color); font-weight: 600;">
+                  What is the difference between short-time and long-time flats?
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                <div class="accordion-body" style="color: var(--nav-text);">
+                  Short-time flats are available for a few months (useful for internships or short semesters), while long-time flats usually require a minimum lease of 6 months to a year.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section class="section" style="background: rgba(99, 102, 241, 0.03);">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card glass">
+            <p class="text-center mb-4">If you have any questions or inquiries, feel free to contact us below.</p>
+            <form action="#" method="post">
+              <div class="mb-3">
+                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+              </div>
+              <div class="mb-3">
+                <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+              </div>
+              <div class="mb-3">
+                <textarea name="message" rows="5" class="form-control" placeholder="Your Message" required></textarea>
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="nav-link btn-primary text-center">Send Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script>
+  const toggleBtn = document.getElementById('theme-toggle');
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  
+  if (currentTheme === 'dark') {
+    toggleBtn.textContent = '☀️';
+  } else {
+    toggleBtn.textContent = '🌙';
+  }
 
+  toggleBtn.addEventListener('click', () => {
+    let theme = document.documentElement.getAttribute('data-theme');
+    if (theme === 'dark') {
+      theme = 'light';
+      toggleBtn.textContent = '🌙';
+    } else {
+      theme = 'dark';
+      toggleBtn.textContent = '☀️';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  });
+</script>
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
