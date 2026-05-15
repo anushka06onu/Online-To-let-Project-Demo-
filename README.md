@@ -1,24 +1,41 @@
-# StaySquare - Online To-let System
+# StaySquare - Online To-Let System
 
-A modern, student-friendly, and professional web application for finding and listing flats.
+StaySquare is a professional, student-friendly web application designed to help students find suitable accommodation near their campus. It connects students with house owners offering flats for rent.
+
+## Motivation
+
+While there are many platforms for finding apartments or sublets, they often cater to families or individuals looking for entire spaces. Students have unique needs:
+- **Seat-Based Search**: Students often share rooms to save costs (3-4 people per room). They need to search for available *seats* within a room rather than renting the whole room or flat.
+- **Roommate Matching**: Finding compatible roommates is crucial for students.
+- **Student-Specific Filters**: Features like "Female Only", "Short Term" (for internships), and budget-friendly options are central to the platform.
+
+StaySquare is built specifically to address these gaps, making it easier for students to find affordable, shared living spaces with the right filters.
 
 ## Features
 
-- **Perfect Professional UI**: Redesigned with a modern glassmorphism aesthetic, vibrant colors, and clean typography.
-- **Student Friendly**: Fun and accessible design with clear navigation.
-- **Light & Dark Mode**: Persistent theme toggle in the header.
-- **Full System Fixed**: Resolved compilation errors with Java 25 and database conflict issues.
-- **H2 Database Support**: Configured with H2 in-memory database for easy local testing without setting up MySQL.
+- **Modern UI**: Glassmorphism aesthetic with support for both Light and Dark modes.
+- **Role-Based Access**: Dedicated workflows for Tenants (Students) and House Owners.
+- **Flat & Seat Listings**: Browse flats with detailed information, including specific sections for short-term and female-only accommodations.
+- **Interactive Design**: Smooth animations, hover effects, and responsive layout.
+- **FAQ Section**: Helpful information for users navigating the platform.
 
-## Tech Stack
+## Technologies Used
 
-- **Backend**: Java 21+ (Spring Boot 3.3.5)
-- **Frontend**: HTML5, Vanilla CSS, Thymeleaf, Bootstrap 5
-- **Database**: H2 (In-memory for Dev) / MySQL (Production ready)
+- **Backend**: Spring Boot 3.3.5, Java 25
+- **Frontend**: HTML5, Thymeleaf, CSS3, Bootstrap 5.3
+- **Database**: H2 In-Memory Database (for development and testing)
+- **Icons**: Font Awesome 6.0
 
-## How to Run
+## Getting Started
 
-1. Ensure you have Java 21 or higher installed.
+### Prerequisites
+
+- Java 25
+- Maven
+
+### Installation & Running
+
+1. Clone the repository.
 2. Navigate to the project directory:
    ```bash
    cd onlineToletSystemDemo/onlineToletSystemDemo
@@ -27,30 +44,15 @@ A modern, student-friendly, and professional web application for finding and lis
    ```bash
    mvn spring-boot:run
    ```
-4. Access the application at `http://localhost:8081`.
+4. Access the application in your browser at `http://localhost:8081`.
 
-## Database Configuration
+## Project Structure
 
-By default, the application is set to use **H2 Database** for easy setup and testing. 
+- `src/main/java`: Contains the Java source code (Controllers, Models, Repositories).
+- `src/main/resources/templates`: Thymeleaf HTML templates.
+- `src/main/resources/static`: Static assets (CSS, images).
+- `src/main/resources/data.sql`: Dummy data to populate the database on startup.
 
-If you want to switch back to **MySQL** for production or persistent storage, update the `src/main/resources/application.properties` file:
+## Developed By
 
-```properties
-# Uncomment for MySQL
-# spring.datasource.url=jdbc:mysql://localhost:3306/online_to_let_system
-# spring.datasource.username=root
-# spring.datasource.password=your_password
-# spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-# spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
-
-# Comment out H2 settings
-spring.datasource.url=jdbc:h2:mem:testdb
-...
-```
-
-## Fixes Applied
-
-- Removed Lombok dependency and replaced it with explicit getters, setters, and constructors to fix compilation errors with Java 25.
-- Renamed the `User` table to `users` to avoid conflicts with H2 reserved keywords.
-- Changed default port to `8081` to avoid conflicts with other services running on `8080`.
-- Refactored HTML templates to use Thymeleaf fragments for header and head, making the code cleaner and more maintainable.
+**Fateha Hossain Anushka**
