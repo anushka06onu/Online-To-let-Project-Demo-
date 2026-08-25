@@ -247,50 +247,6 @@ The previous README stated Java 25, but `pom.xml` configures Java 21.
 
 ---
 
-## Security and Correctness Findings
-
-### Authentication Is Not User-Specific
-
-The controllers store login state in mutable `Login` objects held by singleton Spring controllers. Spring controllers are shared across requests, so one visitor changing that Boolean affects all visitors.
-
-This is not a valid authentication session.
-
-### Email and Password Are Checked Independently
-
-Login currently asks two separate questions:
-
-```text
-Does this email exist anywhere?
-Does this password exist anywhere?
-```
-
-It does not verify that the submitted password belongs to the submitted email. Credentials from different accounts could therefore be combined.
-
-### Passwords Are Stored in Plaintext
-
-Owner and user passwords are saved and queried directly. Seed records also contain plaintext demonstration passwords. Replace this with Spring Security and an adaptive password hash such as BCrypt or Argon2.
-
-### JWT Is Not Active
-
-The JWT-related classes are commented out, and Spring Security is not included as an active dependency. The project must not claim JWT authentication or role-based access control.
-
-### Authorization Is Missing
-
-Management and deletion routes are not protected by reliable user or ownership checks. Tenant deletion also uses `GET`, which should be safe and non-mutating.
-
-### Registration Logic Is Incomplete
-
-The tenant user-registration flow saves a user only when a matching tenant email already exists. This may be an intended invitation rule, but it is not clearly modeled or securely enforced.
-
-### In-Memory Persistence
-
-H2 data is recreated when the application restarts. This is appropriate for demonstrations but not real listings or personal information.
-
-### Personally Identifiable Information
-
-The models include names, phone numbers, addresses, email addresses, and move-in dates. Use only fictional data until privacy, consent, access control, deletion, and retention requirements are implemented.
-
----
 
 ## Repository Structure
 
