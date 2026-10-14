@@ -31,7 +31,7 @@
           <a class="nav-link" href="houseowner/addtenant">Add Tenant</a>
 
           <a class="nav-link" href="#">Profile</a>
-          <a class="btn btn-outline-primary btn-sm" th:href="@{|/logout|}">Logout</a>
+          <form method="post" th:action="@{/logout}"><button type="submit" class="btn btn-outline-primary btn-sm">Logout</button></form>
         </div>
       </div>
     </nav>

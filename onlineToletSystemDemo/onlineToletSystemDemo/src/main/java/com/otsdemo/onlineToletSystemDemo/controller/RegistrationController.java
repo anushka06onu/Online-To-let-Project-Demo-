@@ -26,6 +26,11 @@ public class RegistrationController {
     @Autowired
     UserService userService;
 
+    @Autowired org.springframework.security.crypto.password.PasswordEncoder encoder;
+    @Autowired com.otsdemo.onlineToletSystemDemo.repository.UserRepository users;
+    @org.springframework.web.bind.annotation.InitBinder("houseOwner") void ownerFields(org.springframework.web.bind.WebDataBinder binder) { binder.setAllowedFields("name","email","phoneNumber","password"); }
+    @org.springframework.web.bind.annotation.InitBinder("user") void userFields(org.springframework.web.bind.WebDataBinder binder) { binder.setAllowedFields("userEmail","password"); }
+
     @GetMapping("/houseowner/registration")
     public String houseOwnerRegistration(Model model){
         model.addAttribute("houseOwner", new HouseOwner());
@@ -38,6 +43,10 @@ public class RegistrationController {
             return "ownerRegistrationForm";
         }
 
+        String email=houseOwner.getEmail().trim().toLowerCase(java.util.Locale.ROOT);
+        if (houseOwnerRepository.existsByEmail(email) || users.existsByUserEmail(email)) { result.rejectValue("email","duplicate","Account already exists."); return "ownerRegistrationForm"; }
+        if (houseOwner.getPassword().length()<8 || houseOwner.getPassword().getBytes(java.nio.charset.StandardCharsets.UTF_8).length>72) { result.rejectValue("password","length","Password must be 8 to 72 bytes."); return "ownerRegistrationForm"; }
+        houseOwner.setId(null); houseOwner.setFlat(null); houseOwner.setEmail(email); houseOwner.setPassword(encoder.encode(houseOwner.getPassword()));
         houseOwnerRepository.save(houseOwner);
         System.out.println("Registered Owner: " + houseOwner.getName());
         return "registrationSuccess"; // Redirect to a success page
@@ -50,21 +59,8 @@ public class RegistrationController {
     }
 
     @PostMapping("/tenant/registration")
-    public String registerTenant(@ModelAttribute("user") @Valid User user,
-                                 BindingResult result, Model model) {
-
-        if(result.hasErrors()){
-            return "user-regi-form";
-        }
-
-        boolean paisi = tenantRepository.existsByEmail(user.getUserEmail());
-
-        if(paisi){
-            userService.save(user);
-            return "registrationSuccess";
-        }
-
-        model.addAttribute("msg", "Email does not exixts");
+    public String registerTenant(@ModelAttribute("user") User user, Model model) {
+        model.addAttribute("msg", "Tenant self-registration is unavailable until an owner invitation or email verification flow is configured. Contact your house owner.");
         return "user-regi-form";
     }
 }

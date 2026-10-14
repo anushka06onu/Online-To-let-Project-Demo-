@@ -1,0 +1,7 @@
+# Rental authentication repair
+
+Spring Security now verifies the password belonging to the submitted account, creates an isolated browser session, requires CSRF tokens for writes, and invalidates sessions on POST logout. Owner and tenant routes require the appropriate role. Owners can list, edit membership, and delete tenants only in their own flats. New flats always belong to the authenticated owner; form fields cannot inject IDs or nested ownership data. Deletion uses POST instead of GET. New owner registration hashes passwords with BCrypt and rejects existing accounts.
+
+Legacy plaintext password accounts cannot sign in: review and migrate their passwords to BCrypt through a trusted administrative reset before deployment. Do not accept plaintext passwords as a fallback. Tenant self-registration is unavailable until a verified invitation/email flow is implemented; knowing a tenant's email is not proof of account ownership. Existing tenant accounts need trusted provisioning/reset.
+
+The advertised Vercel deployment returns 404. This Java/Thymeleaf application requires Java 21 hosting and a persistent database; a static Vercel upload cannot run it. Restore the host and configure database credentials in server environment variables. No host settings or credentials were available here. CI runs five security regression tests and the existing Spring context test. Review duplicate normalized email rows before applying the unique constraint.

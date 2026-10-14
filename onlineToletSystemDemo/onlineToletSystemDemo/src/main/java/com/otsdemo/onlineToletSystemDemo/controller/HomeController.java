@@ -20,6 +20,9 @@ public class HomeController {
     @Autowired
     FlatService flatService;
 
+    @GetMapping("/signin")
+    public String signIn() { return "ownerLogin"; }
+
     @GetMapping
     public String home(){
         return "home";
@@ -67,3 +70,4 @@ public class HomeController {
         return "flat-detail";
     }
 }
+

@@ -15,4 +15,6 @@ public interface HouseOwnerRepository extends JpaRepository<HouseOwner, Long> {
     public boolean existsByEmail(String email);
 
     public boolean existsByPassword(String password);
+    java.util.Optional<HouseOwner> findByEmail(String email);
 }
+

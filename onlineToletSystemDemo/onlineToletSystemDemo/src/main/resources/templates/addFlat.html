@@ -48,7 +48,7 @@
 </div>
 <div class="newflat__form">
     <div class="container-lg">
-        <form class = "w-50 a-middle p-4 m-auto" action="/houseowner/addFlat"  method="post" >
+        <form class = "w-50 a-middle p-4 m-auto" th:action="@{/houseowner/addFlat}"  method="post" >
             <div class="mb-3">
                 <label for="flatNo" class="form-label">Flat Number</label>
                 <input type="text" name="flatNo" class="form-control" id="flatNo">
@@ -140,3 +140,4 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
+
