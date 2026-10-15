@@ -13,8 +13,11 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired org.springframework.security.crypto.password.PasswordEncoder encoder;
     public void save(@Valid User user) {
-        userRepository.save(user);
+        if (user.getPassword()==null || user.getPassword().length()<8 || user.getPassword().getBytes(java.nio.charset.StandardCharsets.UTF_8).length>72) throw new IllegalArgumentException("Password must be 8 to 72 bytes.");
+        user.setId(null); user.setUserEmail(user.getUserEmail().trim().toLowerCase(java.util.Locale.ROOT));
+        user.setPassword(encoder.encode(user.getPassword())); userRepository.save(user);
     }
 
     public boolean checkEmail(String userEmail) {
@@ -25,3 +28,4 @@ public class UserService {
         return userRepository.existsByPassword(password);
     }
 }
+

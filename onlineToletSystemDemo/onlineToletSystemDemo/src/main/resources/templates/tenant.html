@@ -27,9 +27,9 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    <a class="nav-link" href="tenant/addflatmate">Add Room Mate</a>
+                    <span class="nav-link">Contact your owner to update flat members</span>
                     <a class="nav-link" href="#">Profile</a>
-                    <a class="btn btn-outline-primary btn-sm" th:href="@{|/logout|}">Logout</a>
+                    <form method="post" th:action="@{/logout}"><button type="submit" class="btn btn-outline-primary btn-sm">Logout</button></form>
                 </div>
             </div>
         </nav>

@@ -1,0 +1,17 @@
+name: Rental security checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+          cache-dependency-path: onlineToletSystemDemo/onlineToletSystemDemo/pom.xml
+      - run: mvn -B test
+        working-directory: onlineToletSystemDemo/onlineToletSystemDemo

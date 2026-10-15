@@ -141,7 +141,7 @@
                     <li><strong>Available Date:</strong> <span th:text="${tenant.contactNumber}"></span></li>
                     <li><strong>Monthly Rent:</strong> <span th:text="${tenant.email}"></span></li>
                     <li><strong>Move in date:</strong> <span th:text="${tenant.moveInDate}"></span></li>
-                    <li><a class="btn btn-outline-primary btn-sm" th:href="@{|/tenant/delete/${tenant.id}|}">Delete</a></span></li>
+                    <li><form method="post" th:action="@{|/houseowner/tenant/${tenant.id}/delete|}"><button class="btn btn-outline-danger btn-sm" type="submit">Delete</button></form></span></li>
                 </ul>
             </div>
         </th:block>

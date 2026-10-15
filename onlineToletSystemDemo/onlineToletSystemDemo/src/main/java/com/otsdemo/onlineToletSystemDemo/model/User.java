@@ -16,6 +16,7 @@ public class User {
     public Long id;
 
     @NotBlank(message = "Enter a valid email")
+    @jakarta.persistence.Column(unique=true)
     public String userEmail;
     @NotBlank(message = "Enter password")
     public String password;
@@ -53,3 +54,4 @@ public class User {
         this.password = password;
     }
 }
+
